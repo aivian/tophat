@@ -75,6 +75,7 @@ ComputerSettings::SetDefaults()
   wave.SetDefaults();
 
   average_eff_time = ae30seconds;
+  thermal_density = lambda5km;
   set_system_time_from_gps = IsAltair() && IsEmbedded();
   utc_offset = RoughTimeDelta::FromSeconds(GetSystemUTCOffset());
   forecast_temperature = CelsiusToKelvin(fixed(25));

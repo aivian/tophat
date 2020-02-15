@@ -178,6 +178,19 @@ enum AverageEffTime {
   ae3minutes,
 };
 
+enum ThermalDensity {
+    lambda1km,
+    lambda2km,
+    lambda3km,
+    lambda4km,
+    lambda5km,
+    lambda6km,
+    lambda7km,
+    lambda8km,
+    lambda9km,
+    lambda10km,
+};
+
 struct ComputerSettings {
   WindSettings wind;
 
@@ -200,6 +213,8 @@ struct ComputerSettings {
   WaveSettings wave;
 
   AverageEffTime average_eff_time;
+
+  ThermalDensity thermal_density;
 
   /** Update system time from GPS time */
   bool set_system_time_from_gps;

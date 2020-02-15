@@ -27,6 +27,7 @@ Copyright_License {
 #include "Engine/Util/Gradient.hpp"
 #include "InfoBoxes/Data.hpp"
 #include "InfoBoxes/Panel/GrAverage.hpp"
+#include "InfoBoxes/Panel/Percolometer.hpp"
 #include "Interface.hpp"
 #include "Util/Macros.hpp"
 #include "Language/Language.hpp"
@@ -95,6 +96,35 @@ InfoBoxContentGRAvg::Update(InfoBoxData &data)
 
   // Set Value
   data.SetValueFromGlideRatio(average_gr);
+}
+
+#ifdef __clang__
+/* gcc gives "redeclaration differs in 'constexpr'" */
+constexpr
+#endif
+const InfoBoxPanel percolometer_infobox_panels[] = {
+  { N_("Set thermal density"), LoadPercolometerPanel },
+  { nullptr, nullptr }
+};
+
+const InfoBoxPanel *
+InfoBoxContentPerc::GetDialogContent()
+{
+  return percolometer_infobox_panels;
+}
+
+void
+InfoBoxContentPerc::Update(InfoBoxData &data)
+{
+  const fixed lambda = 0.0;
+
+  if (!::GradientValid(lambda)) {
+    data.SetInvalid();
+    return;
+  }
+
+  // Set Value
+  data.SetValueFromThermalDensity(lambda);
 }
 
 void

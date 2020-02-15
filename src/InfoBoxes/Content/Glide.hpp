@@ -39,6 +39,7 @@ void
 UpdateInfoBoxLDVario(InfoBoxData &data);
 
 extern const InfoBoxPanel gr_average_infobox_panels[];
+extern const InfoBoxPanel percolometer_infobox_panels[];
 
 class InfoBoxContentGRAvg: public InfoBoxContentNonTabbed
 {
@@ -46,5 +47,12 @@ public:
   virtual const InfoBoxPanel *GetDialogContent() override;
   virtual void Update(InfoBoxData &data) override ;
 };
+class InfoBoxContentPerc: public InfoBoxContentNonTabbed
+{
+public:
+    virtual const InfoBoxPanel *GetDialogContent() override;
+    virtual void Update(InfoBoxData &data) override ;
+};
+
 
 #endif

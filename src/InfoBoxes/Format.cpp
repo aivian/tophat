@@ -53,6 +53,12 @@ InfoBoxData::SetValueFromGlideRatio(fixed gr)
 }
 
 void
+InfoBoxData::SetValueFromThermalDensity(fixed lambda)
+{
+    FormatGlideRatio(value.buffer(), value.capacity(), lambda);
+}
+
+void
 InfoBoxData::SetComment(Angle _value, const TCHAR *suffix)
 {
   assert(suffix != NULL);

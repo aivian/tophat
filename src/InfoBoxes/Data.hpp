@@ -117,6 +117,11 @@ struct InfoBoxData {
   void SetValueFromGlideRatio(fixed gr);
 
   /**
+   * Set the infobox value to the specified thermal density
+   */
+  void SetValueFromThermalDensity(fixed lambda);
+
+  /**
    * Set the InfoBox value to the specified distance.
    */
   void SetValueFromDistance(fixed value);

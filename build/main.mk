@@ -421,6 +421,7 @@ XCSOAR_SOURCES := \
 	$(SRC)/InfoBoxes/Panel/BarometricPressure.cpp \
 	$(SRC)/InfoBoxes/Panel/Home.cpp \
 	$(SRC)/InfoBoxes/Panel/GrAverage.cpp \
+	$(SRC)/InfoBoxes/Panel/Percolometer.cpp \
 	$(SRC)/InfoBoxes/Panel/InfoBoxDescription.cpp \
 	$(SRC)/InfoBoxes/Panel/MacCreadyEdit.cpp \
 	$(SRC)/InfoBoxes/Panel/OnlineContest.cpp \

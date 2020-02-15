@@ -25,8 +25,8 @@ WERROR ?= $(DEBUG)
 endif
 
 ifeq ($(WERROR),y)
-CXXFLAGS += -Werror
-CFLAGS += -Werror
+#CXXFLAGS += -Werror
+#CFLAGS += -Werror
 endif
 
 #CXXFLAGS += -pedantic

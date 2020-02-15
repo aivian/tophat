@@ -118,6 +118,7 @@ const char AccelerometerZero[] = "AccelerometerZero";
 
 const char AutoBlank[] = "AutoBlank";
 const char AverEffTime[] = "AverEffTime";
+const char ThermalDensity[] = "ThermalDensity";
 const char VarioGauge[] = "VarioGauge";
 
 const char AppIndLandable[] = "AppIndLandable";

@@ -968,6 +968,17 @@ static constexpr MetaData meta_data[] = {
     STANDARD,
   },
 
+  // e_lambda
+  {
+      N_("Thermal Density"),
+      N_("Percolation"),
+      N_("the average distance between thermals in km"),
+      IBFHelper<InfoBoxContentPerc>::Create,
+      e_HeightAGL, // H AGL
+      e_GR_Avg, // GR Avg
+      STANDARD,
+  },
+
   // e_Experimental
   {
     N_("Experimental 1"),

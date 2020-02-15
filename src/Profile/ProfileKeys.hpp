@@ -114,6 +114,7 @@ extern const char SoundModes[];
 extern const char NettoSpeed[];
 extern const char AutoBlank[];
 extern const char AverEffTime[]; // VENTA6
+extern const char ThermalDensity[];
 extern const char VarioGauge[];
 extern const char AppIndLandable[];
 extern const char AppUseSWLandablesRendering[];
