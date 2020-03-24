@@ -122,6 +122,11 @@ struct InfoBoxData {
   void SetValueFromThermalDensity(fixed lambda);
 
   /**
+   * Set the infobox value to the specified percolation
+   */
+  void SetValueFromPercolation(fixed perc);
+
+  /**
    * Set the InfoBox value to the specified distance.
    */
   void SetValueFromDistance(fixed value);

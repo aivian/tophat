@@ -103,7 +103,7 @@ InfoBoxContentGRAvg::Update(InfoBoxData &data)
 constexpr
 #endif
 const InfoBoxPanel percolometer_infobox_panels[] = {
-  { N_("Set thermal density"), LoadPercolometerPanel },
+  { N_("Set percolation parameters"), LoadPercolometerPanel },
   { nullptr, nullptr }
 };
 
@@ -116,15 +116,21 @@ InfoBoxContentPerc::GetDialogContent()
 void
 InfoBoxContentPerc::Update(InfoBoxData &data)
 {
-  const fixed lambda = 0.0;
-
-  if (!::GradientValid(lambda)) {
-    data.SetInvalid();
-    return;
-  }
-
   // Set Value
-  data.SetValueFromThermalDensity(lambda);
+  const ComputerSettings &settings_computer =
+    CommonInterface::GetComputerSettings();
+  fixed n_thermals = settings_computer.percolation.n_thermals;
+  fixed min_alt = settings_computer.percolation.min_alt;
+  fixed P_work = settings_computer.percolation.P_work;
+
+  const MoreData &basic = CommonInterface::Basic();
+  fixed altitude = basic.nav_altitude;
+  fixed ld = settings_computer.polar.glide_polar_task.GetBestLD();
+  fixed glide_range = ld * (altitude - min_alt);
+  fixed intensity = n_thermals * P_work / glide_range;
+  fixed perc = intensity * 3.14159 / 4.51 * glide_range;
+
+  data.SetValueFromPercolation(perc);
 }
 
 void

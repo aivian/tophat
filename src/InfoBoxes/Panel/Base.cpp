@@ -247,6 +247,91 @@ BaseAccessPanel::SetCaption()
 }
 
 void
+ThreeButtonNumberLayout::CalculateLayout(const PixelRect &parent_rc,
+                                              unsigned min_value_height,
+                                              unsigned sub_number_height)
+{
+  NumberButtonSubNumberLayout::CalculateLayout(parent_rc, min_value_height);
+  fixed ratio = Layout::landscape ? fixed(0.95) : fixed(0.9);
+  PixelRect rc_bound = parent_rc;
+  PixelSize sz_parent;
+  sz_parent.cx = (PixelScalar)((parent_rc.right - parent_rc.left) * ratio);
+  sz_parent.cy = (PixelScalar)((parent_rc.bottom - parent_rc.top) * ratio);
+
+  rc_bound.top = parent_rc.top + (parent_rc.bottom - parent_rc.top - sz_parent.cy)
+    / 2;
+  rc_bound.bottom = rc_bound.top + sz_parent.cy;
+  rc_bound.left = parent_rc.left + (parent_rc.right - parent_rc.left - sz_parent.cx)
+    / 2;
+  rc_bound.right = rc_bound.left + sz_parent.cx;
+
+  big_plus_rc.left = rc_bound.left;
+  big_plus_rc.top = rc_bound.top;
+  big_plus_rc.bottom = big_plus_rc.top + sz_parent.cy / 3;
+  big_plus_rc.right = big_plus_rc.left + sz_parent.cx / 3;
+
+  middle_plus_rc.left = big_plus_rc.right;
+  middle_plus_rc.top = rc_bound.top;
+  middle_plus_rc.bottom = middle_plus_rc.top + sz_parent.cy / 3;
+  middle_plus_rc.right = middle_plus_rc.left + sz_parent.cx / 3;
+
+  little_plus_rc.right = rc_bound.right;
+  little_plus_rc.top = rc_bound.top;
+  little_plus_rc.bottom = little_plus_rc.top + sz_parent.cy / 3;
+  little_plus_rc.left = little_plus_rc.right - sz_parent.cx / 3;
+
+  big_minus_rc.left = rc_bound.left;
+  big_minus_rc.bottom = rc_bound.bottom;
+  big_minus_rc.top = big_minus_rc.bottom - sz_parent.cy / 3;
+  big_minus_rc.right = big_minus_rc.left + sz_parent.cx / 3;
+
+  middle_minus_rc.left = big_minus_rc.right;
+  middle_minus_rc.bottom= rc_bound.bottom;
+  middle_minus_rc.top = middle_minus_rc.bottom - sz_parent.cy / 3;
+  middle_minus_rc.right = middle_minus_rc.left + sz_parent.cx / 3;
+
+  little_minus_rc.right = rc_bound.right;
+  little_minus_rc.bottom = rc_bound.bottom;
+  little_minus_rc.top = little_minus_rc.bottom - sz_parent.cy / 3;
+  little_minus_rc.left = little_minus_rc.right - sz_parent.cx / 3;
+
+  double_size_plus_rc = big_plus_rc;
+  double_size_plus_rc.right = little_plus_rc.right;
+  double_size_minus_rc = big_minus_rc;
+  double_size_minus_rc.right = little_minus_rc.right;
+
+  big_value_rc.left = big_plus_rc.left;
+  big_value_rc.right = big_plus_rc.right;
+  big_value_rc.top = big_plus_rc.bottom;
+  big_value_rc.bottom = big_minus_rc.top;
+  /*
+  if (value_rc.GetSize().cy < (int)min_value_height) {
+    unsigned nudge_y = (min_value_height - value_rc.GetSize().cy) / 2;
+    unsigned new_value_top = std::max((int)(big_plus_rc.top + 10),
+                                      (int)(big_plus_rc.bottom - nudge_y));
+    unsigned new_value_bottom = std::min((int)(big_minus_rc.bottom - 10),
+                                         (int)(big_minus_rc.top + nudge_y));
+    value_rc.top = big_plus_rc.bottom = little_plus_rc.bottom =
+        double_size_plus_rc.bottom = new_value_top;
+    value_rc.bottom = big_minus_rc.top = little_minus_rc.top =
+        double_size_plus_rc.top = new_value_bottom;
+  }
+  */
+
+  mid_value_rc.left = middle_plus_rc.left;
+  mid_value_rc.right = middle_plus_rc.right;
+  mid_value_rc.top = middle_plus_rc.bottom;
+  mid_value_rc.bottom = middle_minus_rc.top;
+
+  little_value_rc.left = little_plus_rc.left;
+  little_value_rc.right = little_plus_rc.right;
+  little_value_rc.top = little_plus_rc.bottom;
+  little_value_rc.bottom = little_minus_rc.top;
+
+
+}
+
+void
 NumberButton2SubNumberLayout::CalculateLayout(const PixelRect &parent_rc,
                                               unsigned min_value_height,
                                               unsigned sub_number_height)

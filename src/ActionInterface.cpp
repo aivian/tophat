@@ -37,6 +37,9 @@ Copyright_License {
 #include "UIState.hpp"
 #include "Operation/MessageOperationEnvironment.hpp"
 
+#include "LogFile.hpp"
+#include "Logger/Logger.hpp"
+
 using namespace CommonInterface;
 
 namespace ActionInterface {
@@ -189,6 +192,73 @@ ActionInterface::SetMacCready(fixed mc, bool to_devices)
   if (to_devices) {
     MessageOperationEnvironment env;
     device_blackboard->SetMC(mc, env);
+  }
+}
+
+void
+ActionInterface::SetNThermals(fixed n_thermals, bool to_devices)
+{
+  // Repeated adjustment of with the +/- UI elements could result in
+  // a value which is slightly larger than 0.
+  if (n_thermals < fixed(0.01))
+    n_thermals = fixed(0);
+
+  /* update interface settings */
+  PercolationSettings &percolation = SetComputerSettings().percolation;
+  percolation.n_thermals = n_thermals;
+
+  /* update InfoBoxes (that might show the MacCready setting) */
+
+  InfoBoxManager::SetDirty();
+
+  /* send to calculation thread and trigger recalculation */
+
+  if (calculation_thread != nullptr) {
+    calculation_thread->SetComputerSettings(GetComputerSettings());
+    calculation_thread->ForceTrigger();
+  }
+}
+
+void
+ActionInterface::SetMinAlt(fixed min_alt, bool to_devices)
+{
+  /* update interface settings */
+  PercolationSettings &percolation = SetComputerSettings().percolation;
+  percolation.min_alt = min_alt;
+
+  /* update InfoBoxes (that might show the MacCready setting) */
+
+  InfoBoxManager::SetDirty();
+
+  /* send to calculation thread and trigger recalculation */
+
+  if (calculation_thread != nullptr) {
+    calculation_thread->SetComputerSettings(GetComputerSettings());
+    calculation_thread->ForceTrigger();
+  }
+}
+
+void
+ActionInterface::SetPwork(fixed P_work, bool to_devices)
+{
+  // Repeated adjustment of with the +/- UI elements could result in
+  // a value which is slightly larger than 0.
+  if (P_work< fixed(0.01))
+    P_work = fixed(0);
+
+  /* update interface settings */
+  PercolationSettings &percolation = SetComputerSettings().percolation;
+  percolation.P_work = P_work;
+
+  /* update InfoBoxes (that might show the MacCready setting) */
+
+  InfoBoxManager::SetDirty();
+
+  /* send to calculation thread and trigger recalculation */
+
+  if (calculation_thread != nullptr) {
+    calculation_thread->SetComputerSettings(GetComputerSettings());
+    calculation_thread->ForceTrigger();
   }
 }
 

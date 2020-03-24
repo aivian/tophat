@@ -51,6 +51,16 @@ struct Waypoint;
 // but are used read-only by calculations
 
 /**
+ * Percolation settings
+ */
+struct PercolationSettings {
+  fixed n_thermals;
+  fixed min_alt;
+  fixed P_work;
+  void SetDefaults();
+};
+
+/**
  * Glide polar settings
  */
 struct PolarSettings {
@@ -193,6 +203,8 @@ enum ThermalDensity {
 
 struct ComputerSettings {
   WindSettings wind;
+
+  PercolationSettings percolation;
 
   PolarSettings polar;
 

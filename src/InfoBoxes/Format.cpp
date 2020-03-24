@@ -59,6 +59,12 @@ InfoBoxData::SetValueFromThermalDensity(fixed lambda)
 }
 
 void
+InfoBoxData::SetValueFromPercolation(fixed perc)
+{
+    FormatGlideRatio(value.buffer(), value.capacity(), perc);
+}
+
+void
 InfoBoxData::SetComment(Angle _value, const TCHAR *suffix)
 {
   assert(suffix != NULL);

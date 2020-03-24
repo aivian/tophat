@@ -249,6 +249,37 @@ protected:
 };
 
 /**
+ * Layout class that inherits SubNumberButtonLayout, and splits the sub_number into
+ * three vertically stacked numbers to the right of the value
+ */
+class ThreeButtonNumberLayout : public NumberButtonSubNumberLayout {
+protected:
+/**
+ *  positioned flush right on screen, at same X as big value
+ *  Layout looks like (where yy and zz are the two sub number).
+ *    + + +
+ *     xxxx  yy
+ *           zz
+ *    - - -
+ */
+  PixelRect big_value_rc;
+  PixelRect mid_value_rc;
+  PixelRect little_value_rc;
+  PixelRect middle_plus_rc;
+  PixelRect middle_minus_rc;
+
+protected:
+  /*
+   * Sizes the rectangles for the layout
+   * @param value_height.  If > 0, defines min value height
+   * @param sub_number_height. height of each of the two sub numbers on the right
+   */
+  void CalculateLayout(const PixelRect &parent_rc, unsigned min_value_height,
+                       unsigned sub_number_height);
+
+};
+
+/**
  *  Base class that sizes the rectangles needed to layout a
  *  list with two big 1/2 height buttons up/dn on the right,
  *  and one full width button below the list.

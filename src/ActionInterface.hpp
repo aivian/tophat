@@ -59,6 +59,30 @@ namespace ActionInterface {
   void SetMacCready(fixed mc, bool to_devices=true);
 
   /**
+   * Configure a new reachable thermal number in #ComputerSettings, and
+   * forward it to all XCSoar modules that want it.
+   *
+   * @param to_devices send the new settings to all devices?
+   */
+  void SetNThermals(fixed mc, bool to_devices=true);
+
+  /**
+   * Configure a new min altitude for risk in #ComputerSettings, and
+   * forward it to all XCSoar modules that want it.
+   *
+   * @param to_devices send the new settings to all devices?
+   */
+  void SetMinAlt(fixed mc, bool to_devices=true);
+
+  /**
+   * Configure a new probability of working in #ComputerSettings, and
+   * forward it to all XCSoar modules that want it.
+   *
+   * @param to_devices send the new settings to all devices?
+   */
+  void SetPwork(fixed mc, bool to_devices=true);
+
+  /**
    * Configure a new MacCready setting in #ComputerSettings, and
    * forward it to all XCSoar modules that want it. Also switch
    * to manual MC mode.

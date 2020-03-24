@@ -37,6 +37,13 @@ PolarSettings::SetDefaults()
   auto_bugs = false;
 }
 
+void PercolationSettings::SetDefaults()
+{
+  n_thermals = fixed(0.0);
+  min_alt = fixed(0.0);
+  P_work = fixed(1.0);
+}
+
 void
 PlacesOfInterestSettings::ClearHome()
 {
@@ -65,6 +72,7 @@ void
 ComputerSettings::SetDefaults()
 {
   wind.SetDefaults();
+  percolation.SetDefaults();
   polar.SetDefaults();
   team_code.SetDefaults();
   file_pick_and_download.SetDefaults();
@@ -75,7 +83,6 @@ ComputerSettings::SetDefaults()
   wave.SetDefaults();
 
   average_eff_time = ae30seconds;
-  thermal_density = lambda5km;
   set_system_time_from_gps = IsAltair() && IsEmbedded();
   utc_offset = RoughTimeDelta::FromSeconds(GetSystemUTCOffset());
   forecast_temperature = CelsiusToKelvin(fixed(25));
