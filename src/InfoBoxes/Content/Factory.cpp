@@ -970,9 +970,9 @@ static constexpr MetaData meta_data[] = {
 
   // e_lambda
   {
-      N_("Thermal Density"),
       N_("Percolation"),
-      N_("the average distance between thermals in km"),
+      N_("Percolation"),
+      N_("display your percolation number"),
       IBFHelper<InfoBoxContentPerc>::Create,
       e_HeightAGL, // H AGL
       e_GR_Avg, // GR Avg

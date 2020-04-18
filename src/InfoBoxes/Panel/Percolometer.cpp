@@ -207,17 +207,17 @@ PercolometerPanel::Refresh()
     CommonInterface::GetComputerSettings();
   fixed n_thermals = settings_computer.percolation.n_thermals;
   StaticString<32> buffer;
-  buffer.Format("%0.0f", n_thermals);
+  buffer.Format(_T("%0.0f"), n_thermals);
   n_thermals_value->SetCaption(buffer.c_str());
 
   StaticString<32> buffer_alt;
   fixed min_alt = settings_computer.percolation.min_alt;
-  buffer_alt.Format("%0.0f", min_alt);
+  buffer_alt.Format(_T("%0.0f"), min_alt);
   min_alt_value->SetCaption(buffer_alt.c_str());
 
   StaticString<32> buffer_work;
   fixed P_work = settings_computer.percolation.P_work;
-  buffer_work.Format("%0.1f", P_work);
+  buffer_work.Format(_T("%0.1f"), P_work);
   P_work_value->SetCaption(buffer_work.c_str());
 
   final_glide_chart->Invalidate();
